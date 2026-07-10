@@ -1,0 +1,16 @@
+{
+  "name": "Heart Touch",
+  "short_name": "Heart ❤️",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ff9a9e",
+  "theme_color": "#ff6b81",
+
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/833/833472.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
