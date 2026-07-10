@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Heart Touch ❤️</title>
+<link rel="manifest" href="manifest.json">
 
+<meta name="theme-color" content="#ff6b81">
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -33,6 +35,16 @@
 
 
 <script src="app.js"></script>
+<script>
 
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker.register(
+"sw.js"
+);
+
+}
+
+</script>
 </body>
 </html>
