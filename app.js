@@ -110,72 +110,133 @@ room.on("value", snapshot => {
 
 function createHearts(){
 
+    // 创建中心闪光
 
-    for(let i=0;i<80;i++){
+    const flash = document.createElement("div");
+
+    flash.innerHTML = "💖";
+
+    flash.style.position = "fixed";
+    flash.style.left = "50%";
+    flash.style.top = "50%";
+    flash.style.transform = "translate(-50%,-50%)";
+
+    flash.style.fontSize = "120px";
+
+    document.body.appendChild(flash);
 
 
-        let heartParticle =
+    flash.animate(
+        [
+            {
+                transform:
+                "translate(-50%,-50%) scale(0)",
+                opacity:0
+            },
+            {
+                transform:
+                "translate(-50%,-50%) scale(1.5)",
+                opacity:1
+            },
+            {
+                transform:
+                "translate(-50%,-50%) scale(1)",
+                opacity:0
+            }
+        ],
+        {
+            duration:1000
+        }
+    );
+
+
+    setTimeout(()=>{
+        flash.remove();
+    },1000);
+
+
+
+    // 爆炸粒子
+
+    for(let i=0;i<120;i++){
+
+
+        const heart =
         document.createElement("div");
 
 
-        heartParticle.innerHTML="❤️";
+        heart.innerHTML =
+        ["❤️","💖","💕","💗"]
+        [Math.floor(Math.random()*4)];
 
 
-        heartParticle.style.position="fixed";
+        heart.style.position="fixed";
 
-        heartParticle.style.left="50%";
 
-        heartParticle.style.top="50%";
+        heart.style.left="50%";
+        heart.style.top="50%";
 
-        heartParticle.style.fontSize =
-        Math.random()*30+15+"px";
+
+        heart.style.fontSize =
+        Math.random()*25+15+"px";
+
+
+        document.body.appendChild(heart);
+
+
+
+        let angle =
+        Math.random()*Math.PI*2;
+
+
+        let distance =
+        Math.random()*350+100;
+
 
 
         let x =
-        (Math.random()-0.5)*window.innerWidth;
+        Math.cos(angle)*distance;
 
 
         let y =
-        (Math.random()-0.5)*window.innerHeight;
+        Math.sin(angle)*distance;
 
 
 
-        heartParticle.animate([
+        heart.animate(
+            [
+                {
+                    transform:
+                    "translate(-50%,-50%) scale(0)",
+                    opacity:1
+                },
 
+                {
+                    transform:
+                    `translate(${x}px,${y}px) scale(1)`,
+                    opacity:1
+                },
+
+                {
+                    transform:
+                    `translate(${x}px,${y-200}px) scale(0.5)`,
+                    opacity:0
+                }
+
+            ],
             {
-                transform:"translate(0,0)",
-                opacity:1
-            },
-
-            {
-                transform:
-                `translate(${x}px,${y}px)`,
-                opacity:0
+                duration:
+                1800+Math.random()*1000,
+                easing:"cubic-bezier(.17,.67,.83,.67)"
             }
-
-
-        ],{
-
-            duration:1500
-
-        });
-
-
-
-        document.body.appendChild(
-            heartParticle
         );
 
 
         setTimeout(()=>{
-
-            heartParticle.remove();
-
-        },1500);
-
+            heart.remove();
+        },3000);
 
     }
-
 
 }
 
